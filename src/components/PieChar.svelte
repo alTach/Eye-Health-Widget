@@ -2,22 +2,22 @@
     export let name;
 </script>
 
-<svg width="50" height="50" class="animate">
-    <circle r="25" cx="25" cy="25" />
+<svg width="75" height="75" class="animate">
+    <circle r="25" cx="50%" cy="50%" />
 </svg>
 
 
 <style>
-
     svg {
-        padding: 5px;
+        padding: 8px;
         transform: rotate(-90deg);
-        background: yellowgreen;
+        background: #7C8BF7;
         border-radius: 50%;
+        box-sizing: border-box;
     }
     circle {
-        fill: yellowgreen;
-        stroke: #655;
+        fill: transparent;
+        stroke: #fff;
         stroke-width: 50;
         stroke-dasharray: 0 158;
     }

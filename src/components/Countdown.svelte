@@ -21,9 +21,21 @@
         align-items: center;
         justify-content: center;
         padding: 45px 0;
+        height: 168px;
     }
     .pie {
         flex-shrink: 0;
         margin-right: 25px;
+    }
+    .time {
+        font-size: 40.17px;
+        font-weight: 700;
+        color: #555D73;
+        text-align: center;
+    }
+    .time__title {
+        color: #7C8BF7;
+        font-weight: 600;
+        font-size: 17px;
     }
 </style>
