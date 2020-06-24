@@ -3,6 +3,12 @@
     "countdown": {
       "timer__title": "Time remaining"
     },
+    "settings": {
+      "header": {
+        "general": "general",
+        "account": "account"
+      }
+    },
     "scenes": {
       "eyes" : {
         "nearFar": "Focus eyes near and far",

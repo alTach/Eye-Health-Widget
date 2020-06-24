@@ -1,5 +1,5 @@
 <script>
-    export let name;
+    // export let name;
 </script>
 
 <svg width="75" height="75" class="animate">
@@ -7,11 +7,12 @@
 </svg>
 
 
-<style>
+<style lang="scss">
+    @import "../styles/variable";
     svg {
         padding: 8px;
         transform: rotate(-90deg);
-        background: #7C8BF7;
+        background: $blue;
         border-radius: 50%;
         box-sizing: border-box;
     }

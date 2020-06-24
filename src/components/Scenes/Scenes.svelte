@@ -35,10 +35,11 @@
 </div>
 
 <style lang="scss">
+    @import "../../styles/variable";
     .face {
         width: 150px;
         height: 150px;
-        background-color: purple;
+        background-color: $blue;
         border-radius: 50%;
     }
 

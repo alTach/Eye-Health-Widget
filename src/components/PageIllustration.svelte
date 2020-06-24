@@ -8,7 +8,5 @@
 
 
 <style>
-    .main{
-        height: 500px;
-    }
+
 </style>

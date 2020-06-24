@@ -2,7 +2,7 @@
     import PieChar from "./PieChar.svelte";
     import * as lang from '../i18n/en.json'
 
-    export let name;
+    // export let name;
 </script>
 
 <div class="countdown">
@@ -15,13 +15,13 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
+    @import "../styles/variable";
     .countdown {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 45px 0;
-        height: 168px;
+        height: 106px;
     }
     .pie {
         flex-shrink: 0;
@@ -30,11 +30,11 @@
     .time {
         font-size: 40.17px;
         font-weight: 700;
-        color: #555D73;
+        color: $black;
         text-align: center;
     }
     .time__title {
-        color: #7C8BF7;
+        color: $blue;
         font-weight: 600;
         font-size: 17px;
     }
