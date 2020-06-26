@@ -3,9 +3,11 @@
 
     const titles = [lang.page.settings.header.general, lang.page.settings.header.account]
     let activeTitle = titles[0];
+    let activeElementLeft = 0;
 
-    function selectActiveTitle(title) {
-        activeTitle = title
+    function selectActiveTitle(title, e) {
+        activeTitle = title;
+        activeElementLeft = e.target.offsetLeft;
     }
 
     // export let name;
@@ -15,10 +17,10 @@
 <div class="setting">
     <div class="head">
         {#each titles as title}
-            <button on:click={() => selectActiveTitle(title)} class="head__title"
+            <button on:click={(e) => selectActiveTitle(title, e)} class="head__title"
                     class:active={title === activeTitle}>{title}</button>
         {/each}
-        <div class="head__line"></div>
+        <div class="head__line" style="left: {activeElementLeft}px"></div>
     </div>
     <div class="body"></div>
 </div>
@@ -61,6 +63,7 @@
             height: 4px;
             background-color: $blue;;
             border-radius: 34px;
+            transition: left .2s ease;
         }
     }
 </style>
