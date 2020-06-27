@@ -1,7 +1,11 @@
 <script>
     import * as lang from '../i18n/en.json'
+    import Checkbox from "./Checkbox.svelte";
+    import TimerContorl from "./TimerContorl.svelte";
 
-    const titles = [lang.page.settings.header.general, lang.page.settings.header.account]
+    const titles = [lang.page.settings.header.general, lang.page.settings.header.account];
+
+
     let activeTitle = titles[0];
     let activeElementLeft = 0;
 
@@ -22,7 +26,21 @@
         {/each}
         <div class="head__line" style="left: {activeElementLeft}px"></div>
     </div>
-    <div class="body"></div>
+    <div class="body">
+        <div class="body__checkboxes">
+            <label class="body__checkbox body-checkbox">
+                <Checkbox isChecked="{true}"/>
+                <span class="body-checkbox__title">{lang.page.settings.body.soundTitle}</span>
+            </label>
+            <label class="body__checkbox body-checkbox">
+                <Checkbox isChecked="{true}"/>
+                <span class="body-checkbox__title">{lang.page.settings.body.colorTitle}</span>
+            </label>
+        </div>
+        <div class="body__timer">
+            {lang.page.settings.body.timerTitle} <TimerContorl /> {lang.page.settings.body.minutesMin}
+        </div>
+    </div>
 </div>
 
 
@@ -65,5 +83,20 @@
             border-radius: 34px;
             transition: left .2s ease;
         }
+    }
+
+    .body {
+        padding-top: 40px;
+    }
+    .body__checkbox {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+    .body-checkbox__title {
+        margin-left: 25px;
     }
 </style>

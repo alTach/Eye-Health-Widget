@@ -7,6 +7,12 @@
       "header": {
         "general": "general",
         "account": "account"
+      },
+      "body": {
+        "soundTitle": "Enable sound notifications",
+        "colorTitle": "Auto-adjust for save colors",
+        "timerTitle": "Timer set for every",
+        "minutesMin": "mins"
       }
     },
     "scenes": {
