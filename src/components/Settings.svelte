@@ -5,7 +5,6 @@
 
     const titles = [lang.page.settings.header.general, lang.page.settings.header.account];
 
-
     let activeTitle = titles[0];
     let activeElementLeft = 0;
 
@@ -38,7 +37,7 @@
             </label>
         </div>
         <div class="body__timer">
-            {lang.page.settings.body.timerTitle} <TimerContorl /> {lang.page.settings.body.minutesMin}
+            {lang.page.settings.body.timerTitle} <TimerContorl on:time={(e) => console.log(e)} /> {lang.page.settings.body.minutesMin}
         </div>
     </div>
 </div>
@@ -88,6 +87,9 @@
     .body {
         padding-top: 40px;
     }
+    .body__checkboxes {
+        margin-bottom: 30px;
+    }
     .body__checkbox {
         display: flex;
         align-items: center;
@@ -98,5 +100,13 @@
     }
     .body-checkbox__title {
         margin-left: 25px;
+    }
+
+    .body__timer {
+        display: flex;
+        align-items: center;
+        &:global .timer {
+            margin: 0 15px;
+        }
     }
 </style>
