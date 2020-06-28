@@ -17,7 +17,7 @@
 
 
 <style lang="scss">
-    @import "../styles/variable";
+    @import "../../styles/variable";
     .check {
         cursor: pointer;
     }
@@ -35,7 +35,7 @@
     .check__box {
         width: 29.87px;
         height: 29.87px;
-        background-color: $black;
+        background-color: var(--black);
         border-radius: 8px;
         background-size: 55%;
         background-position: center;

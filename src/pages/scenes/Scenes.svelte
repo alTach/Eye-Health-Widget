@@ -39,7 +39,7 @@
     .face {
         width: 150px;
         height: 150px;
-        background-color: $blue;
+        background-color: var(--purple);
         border-radius: 50%;
     }
 

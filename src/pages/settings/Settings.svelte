@@ -1,11 +1,17 @@
 <script>
-    import * as lang from '../i18n/en.json'
+    import * as lang from '../../i18n/en.json'
     import Checkbox from "./Checkbox.svelte";
     import TimerContorl from "./TimerContorl.svelte";
+    import ColorPicker from "./ColorPicker.svelte";
+    import {colors} from '../../constant';
+    import PageHeader from "../../components/PageHeader.svelte";
+    import CloseIcon from "../../components/CloseIcon.svelte";
+    import IconBack from "./IconBack.svelte";
 
     const titles = [lang.page.settings.header.general, lang.page.settings.header.account];
 
     let activeTitle = titles[0];
+    let activeColor = colors[0];
     let activeElementLeft = 0;
 
     function selectActiveTitle(title, e) {
@@ -13,19 +19,27 @@
         activeElementLeft = e.target.offsetLeft;
     }
 
+    function selectActiveColor(e) {
+        activeColor = e.detail;
+    }
+
     // export let name;
 </script>
 
 
 <div class="setting">
-    <div class="head">
-        {#each titles as title}
-            <button on:click={(e) => selectActiveTitle(title, e)} class="head__title"
-                    class:active={title === activeTitle}>{title}</button>
-        {/each}
-        <div class="head__line" style="left: {activeElementLeft}px"></div>
-    </div>
+    <PageHeader>
+        <IconBack />
+        <CloseIcon />
+    </PageHeader>
     <div class="body">
+        <div class="body__head body-head">
+            {#each titles as title}
+                <button on:click={(e) => selectActiveTitle(title, e)} class="body-head__title"
+                        class:active={title === activeTitle}>{title}</button>
+            {/each}
+            <div class="body-head__line" style="left: {activeElementLeft}px"></div>
+        </div>
         <div class="body__checkboxes">
             <label class="body__checkbox body-checkbox">
                 <Checkbox isChecked="{true}"/>
@@ -39,27 +53,28 @@
         <div class="body__timer">
             {lang.page.settings.body.timerTitle} <TimerContorl on:time={(e) => console.log(e)} /> {lang.page.settings.body.minutesMin}
         </div>
+        <ColorPicker on:color={selectActiveColor} activeColor="{activeColor}"/>
     </div>
 </div>
 
 
 <style lang="scss">
-    @import "../styles/variable";
+    @import "../../styles/variable";
 
     .setting {
         padding: 0 10px;
-        color: $black;
     }
 
-    .head {
+    .body-head {
         display: flex;
         padding-bottom: 10px;
         position: relative;
+        margin-bottom: 35px;
 
         &__title {
             font-size: 18px;
             font-weight: 700;
-            color: rgba($black, .3);
+            color: rgba(#555D73, .3); // TODO make other decision
             cursor: pointer;
         }
 
@@ -68,7 +83,7 @@
         }
 
         &__title.active {
-            color: $black;
+            color: var(--black);
             cursor: default;
         }
 
@@ -78,14 +93,14 @@
             left: 0;
             width: 23px;
             height: 4px;
-            background-color: $blue;;
+            background-color: var(--blue);
             border-radius: 34px;
             transition: left .2s ease;
         }
     }
 
     .body {
-        padding-top: 40px;
+        padding: 40px 0 55px;
     }
     .body__checkboxes {
         margin-bottom: 30px;

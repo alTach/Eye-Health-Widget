@@ -8,7 +8,7 @@
     button {
         width: 36.92px;
         height: 36.92px;
-        background-color: $gray;
+        background-color: var(--gray);
         border-radius: 50%;
         overflow: hidden;
     }

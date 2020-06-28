@@ -1,6 +1,6 @@
 <script>
     import PieChar from "./PieChar.svelte";
-    import * as lang from '../i18n/en.json'
+    import * as lang from '../../i18n/en.json'
 
     // export let name;
 </script>
@@ -30,11 +30,10 @@
     .time {
         font-size: 40.17px;
         font-weight: 700;
-        color: $black;
         text-align: center;
     }
     .time__title {
-        color: $blue;
+        color: var(--purple);
         font-weight: 600;
         font-size: 17px;
     }

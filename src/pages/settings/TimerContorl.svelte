@@ -18,7 +18,7 @@
 </div>
 
 <style lang="scss">
-    @import "../styles/variable";
+    @import "../../styles/variable";
 
     input::-webkit-inner-spin-button,
     input::-webkit-outer-spin-button {
@@ -33,9 +33,8 @@
         justify-content: center;
         width: 80px;
         height: 34px;
-        background: $gray;
+        background: var(--gray);
         border-radius: 5px;
-        color: $black;
     }
 
     .timer__time {
@@ -54,7 +53,6 @@
         background-position: center;
         background-size: 65%;
         background-repeat: no-repeat;
-        cursor: pointer;
     }
 
     .timer__decrement {

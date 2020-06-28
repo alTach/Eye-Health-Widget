@@ -12,7 +12,7 @@
     svg {
         padding: 8px;
         transform: rotate(-90deg);
-        background: $blue;
+        background: var(--purple);
         border-radius: 50%;
         box-sizing: border-box;
     }
