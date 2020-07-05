@@ -1,14 +1,15 @@
 <script>
+    import { settingTimeInSecond } from '../../../store.js';
     // export let name;
 </script>
 
 <svg width="75" height="75" class="animate">
-    <circle r="25" cx="50%" cy="50%" />
+    <circle r="25" cx="50%" cy="50%" style="animation-duration: {$settingTimeInSecond}s"/>
 </svg>
 
 
 <style lang="scss">
-    @import "../styles/variable";
+    @import "../../../styles/variable";
     svg {
         padding: 8px;
         transform: rotate(-90deg);
@@ -24,7 +25,9 @@
     }
 
     svg.animate circle {
-        animation: fillup 5s linear infinite;
+        animation-name: fillup;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
     }
 
     @keyframes fillup {
