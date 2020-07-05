@@ -1,17 +1,17 @@
 <script>
-    // import {createEventDispatcher} from "svelte";
-    // let dispatch = createEventDispatcher();
+    import {createEventDispatcher} from "svelte";
+    let dispatch = createEventDispatcher();
     export let isChecked
     let checkboxAvatar;
-    setTimeout(() => {
-        checkboxAvatar.focus();
-        console.log(checkboxAvatar)
-    }, 2000);
+    let checkbox;
+    function checkboxChange() {
+        dispatch('change', checkbox.checked)
+    }
 </script>
 
 
 <div class="check">
-    <input type="checkbox" checked="{isChecked}">
+    <input type="checkbox" bind:this={checkbox} checked="{isChecked}" on:change={checkboxChange}>
     <div class="check__box" bind:this={checkboxAvatar}></div>
 </div>
 
