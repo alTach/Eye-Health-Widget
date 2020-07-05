@@ -1,20 +1,13 @@
 <script>
+    import { settingTime } from '../../store.js';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
-
-    let timer = 20
-    let increment = () => timer++;
-    let decrement = () => timer--;
-
-    $: {
-        dispatch('time', timer)
-    }
 </script>
 
 <div class="timer">
-    <button class="timer__decrement timer__action" on:click={decrement}></button>
-    <input class="timer__time" type="number" min="0" max="999" bind:value={timer}>
-    <button class="timer__increment timer__action" on:click={increment}></button>
+    <button class="timer__decrement timer__action" on:click={settingTime.decrement}></button>
+    <input class="timer__time" type="number" min="0" max="999" bind:value={$settingTime}>
+    <button class="timer__increment timer__action" on:click={settingTime.increment}></button>
 </div>
 
 <style lang="scss">
@@ -38,7 +31,7 @@
     }
 
     .timer__time {
-        width: 30px;
+        width: 42px;
         text-align: center;
         padding: 0;
         margin: 0;
