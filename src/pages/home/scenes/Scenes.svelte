@@ -39,7 +39,7 @@
     .face {
         width: 150px;
         height: 150px;
-        background-color: var(--purple);
+        background-color: var(--primary);
         border-radius: 50%;
     }
 
@@ -83,16 +83,18 @@
             content: '';
             border-radius: 50%;
             display: block;
-            background-color: gray;
+            background-color: var(--black);
             width: 7px;
             height: 7px;
         }
 
-        &.active:before {
-            background-color: white;
-            width: 10px;
-            height: 10px;
-            box-shadow: 0 0 0px 5px #d94e4e;
+        &.active{
+            background: var(--primary);
+            &:before {
+                background-color: white;
+                width: 10px;
+                height: 10px;
+            }
         }
     }
 

@@ -109,6 +109,8 @@ button:focus {
 
 
 :root {
+	--primary: #7C8BF7;
+
 	--pink: #EB87FF;
 	--light-pink: #F7C4F0;
 	--red: #FF5EA6;
