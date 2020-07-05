@@ -7,11 +7,11 @@
     import PageHeader from "../../components/PageHeader.svelte";
     import CloseIcon from "../../components/CloseIcon.svelte";
     import IconBack from "./IconBack.svelte";
+    import {settingPage} from "../../store";
 
     const titles = [lang.page.settings.header.general, lang.page.settings.header.account];
 
     let activeTitle = titles[0];
-    let activeColor = colors[0];
     let activeElementLeft = 0;
 
     function selectActiveTitle(title, e) {
@@ -19,50 +19,73 @@
         activeElementLeft = e.target.offsetLeft;
     }
 
-    function selectActiveColor(e) {
-        activeColor = e.detail;
+    function setTime(time) {
+        console.log(time);
     }
 
-    // export let name;
+    function updateNotificationSound(e) {
+        enableSoundNotification = e.detail;
+    }
+
+    let containerNode;
 </script>
 
-
-<div class="setting">
-    <PageHeader>
-        <IconBack />
-        <CloseIcon />
-    </PageHeader>
-    <div class="body">
-        <div class="body__head body-head">
-            {#each titles as title}
-                <button on:click={(e) => selectActiveTitle(title, e)} class="body-head__title"
-                        class:active={title === activeTitle}>{title}</button>
-            {/each}
-            <div class="body-head__line" style="left: {activeElementLeft}px"></div>
+<div
+        class="container"
+        bind:this={containerNode}
+        class:active={$settingPage}
+        style="height: {$settingPage ? containerNode.scrollHeight : 0}px">
+    <div class="setting">
+        <PageHeader>
+            <IconBack on:click={settingPage.close}/>
+            <CloseIcon />
+        </PageHeader>
+        <div class="body">
+            <div class="body__head body-head">
+                {#each titles as title}
+                    <button on:click={(e) => selectActiveTitle(title, e)} class="body-head__title"
+                            class:active={title === activeTitle}>{title}</button>
+                {/each}
+                <div class="body-head__line" style="left: {activeElementLeft}px"></div>
+            </div>
+            <div class="body__checkboxes">
+                <label class="body__checkbox body-checkbox">
+                    <Checkbox isChecked="{true}" on:change="{updateNotificationSound}"/>
+                    <span class="body-checkbox__title">{lang.page.settings.body.soundTitle}</span>
+                </label>
+                <!--            <label class="body__checkbox body-checkbox body-checkbox_disabled">-->
+                <!--                <Checkbox isChecked="{true}" on:change="{colorTileValue}"/>-->
+                <!--                <span class="body-checkbox__title">{lang.page.settings.body.colorTitle}</span>-->
+                <!--            </label>-->
+            </div>
+            <div class="body__timer">
+                {lang.page.settings.body.timerTitle} <TimerContorl on:time={setTime} /> {lang.page.settings.body.minutesMin}
+            </div>
+            <ColorPicker/>
         </div>
-        <div class="body__checkboxes">
-            <label class="body__checkbox body-checkbox">
-                <Checkbox isChecked="{true}"/>
-                <span class="body-checkbox__title">{lang.page.settings.body.soundTitle}</span>
-            </label>
-            <label class="body__checkbox body-checkbox">
-                <Checkbox isChecked="{true}"/>
-                <span class="body-checkbox__title">{lang.page.settings.body.colorTitle}</span>
-            </label>
-        </div>
-        <div class="body__timer">
-            {lang.page.settings.body.timerTitle} <TimerContorl on:time={(e) => console.log(e)} /> {lang.page.settings.body.minutesMin}
-        </div>
-        <ColorPicker on:color={selectActiveColor} activeColor="{activeColor}"/>
     </div>
 </div>
+
 
 
 <style lang="scss">
     @import "../../styles/variable";
 
+    .container{
+        position: relative;
+        left: 10px;
+        transition: left .2s ease, height .2s ease;
+
+        &:not(.active) {
+            padding: 0;
+        }
+        &.active {
+            left: -100%;
+        }
+    }
+
     .setting {
-        padding: 0 10px;
+        width: 100%;
     }
 
     .body-head {
@@ -93,7 +116,7 @@
             left: 0;
             width: 23px;
             height: 4px;
-            background-color: var(--blue);
+            background-color: var(--primary);
             border-radius: 34px;
             transition: left .2s ease;
         }
