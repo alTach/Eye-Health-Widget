@@ -1,23 +1,23 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
     import {colors} from '../../constant';
+    import {primaryColor} from "../../store";
 
-    const dispatch = createEventDispatcher();
-
-    export let activeColor;
-    console.log(activeColor, 12);
-
-    function selectColor(color) {
-        dispatch('color', color)
+    function selectPrimaryColor(color) {
+        primaryColor.set(color)
     }
+
+    primaryColor.subscribe(data => {
+        const html = document.querySelector('html');
+        html.setAttribute('data-primary', data.className);
+    })
 </script>
 
 <div class="colors">
     {#each colors as color}
         <button
-                on:click={() => selectColor(color)}
-                tabindex="{activeColor === color ? -1 : 0}"
-                class:active={activeColor === color} class="{'color ' + color.className}"></button>
+                on:click={() => $primaryColor !== color && selectPrimaryColor(color)}
+                tabindex="{$primaryColor === color ? -1 : 0}"
+                class:active={$primaryColor === color} class="{'color ' + color.className}"></button>
     {/each}
 </div>
 
@@ -39,11 +39,7 @@
             margin-right: 30px;
         }
 
-        &:active {
-            /*background: initial;*/
-        }
-
-        &:before{
+        &:before {
             $width: 36px;
             width: $width;
             height: $width;
@@ -57,13 +53,10 @@
             border-radius: 50%;
             transition: opacity .3s ease;
         }
+
         &.active:before {
             opacity: .25;
         }
-
-        /*&.active:focus {*/
-        /*    outline: none;*/
-        /*}*/
 
         &_pink {
             background: var(--pink);
