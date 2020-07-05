@@ -1,6 +1,10 @@
 <script>
+    import {createEventDispatcher} from "svelte";
+    const dispatcher = createEventDispatcher();
 
-
+    function onClick() {
+        dispatcher('click')
+    }
 </script>
 
 <style lang="scss">
@@ -14,7 +18,7 @@
     }
 </style>
 
-<button>
+<button on:click={onClick}>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
          viewBox="0 0 174.239 174.239">
         <g>
