@@ -1,5 +1,5 @@
 <script>
-    import * as lang from '../../i18n/en.json'
+    import * as lang from '../../../i18n/en.json'
 
     let activeScene = "nearFar";
     const titleArr = {
@@ -35,7 +35,7 @@
 </div>
 
 <style lang="scss">
-    @import "../../styles/variable";
+    @import "../../../styles/variable";
     .face {
         width: 150px;
         height: 150px;
@@ -76,9 +76,13 @@
     }
 
     .step {
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
-        padding: 8px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &:before {
             content: '';
             border-radius: 50%;
@@ -86,6 +90,7 @@
             background-color: var(--black);
             width: 7px;
             height: 7px;
+            transition: width .1s ease, height .1s ease;
         }
 
         &.active{

@@ -120,3 +120,22 @@ button:focus {
 	--purple: #7C8BF7;
 	--black: #555D73;
 }
+
+[data-primary="color_blue"] {
+	--primary: #7C8BF7;
+}
+[data-primary="color_blue-light"] {
+	--primary: #78B5FF
+}
+[data-primary="color_purple"] {
+	--primary: #7C8BF7;
+}
+[data-primary="color_pink"] {
+	--primary: #EB87FF
+}
+[data-primary="color_red"] {
+	--primary: #FF5EA6;
+}
+[data-primary="color_light-pink"] {
+	--primary: #F7C4F0;
+}
