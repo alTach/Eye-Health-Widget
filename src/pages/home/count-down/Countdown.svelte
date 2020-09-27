@@ -1,7 +1,7 @@
 <script>
     import PieChar from "./PieChar.svelte";
     import * as lang from '../../../i18n/en.json'
-    import {settingTimeFormatted} from '../../../store.js';
+    import {timer} from "../../../store/store-timer";
 </script>
 
 <div class="countdown">
@@ -9,7 +9,7 @@
         <PieChar/>
     </div>
     <div class="timer">
-        <div class="time">{$settingTimeFormatted}</div>
+        <div class="time">{$timer}</div>
         <div class="time__title">{lang.page.countdown.timer__title}</div>
     </div>
 </div>

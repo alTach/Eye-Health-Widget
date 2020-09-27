@@ -1,13 +1,11 @@
 <script>
-    import { settingTime } from '../../store.js';
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+    import {timer} from "../../store/store-timer";
 </script>
 
 <div class="timer">
-    <button class="timer__decrement timer__action" on:click={settingTime.decrement}></button>
-    <input class="timer__time" type="number" min="0" max="999" bind:value={$settingTime}>
-    <button class="timer__increment timer__action" on:click={settingTime.increment}></button>
+    <button class="timer__decrement timer__action" on:click={timer.decrement}></button>
+    <input class="timer__time" type="number" min="0" max="999" bind:value={$timer.native.minutes}>
+    <button class="timer__increment timer__action" on:click={timer.increment}></button>
 </div>
 
 <style lang="scss">

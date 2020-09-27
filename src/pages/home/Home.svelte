@@ -4,7 +4,7 @@
     import PageHeader from "../../components/PageHeader.svelte";
     import IconSettings from "../../components/IconSettings.svelte";
     import CloseIcon from "../../components/CloseIcon.svelte";
-    import {settingPage} from "../../store";
+    import {settingPage} from "../../store/store";
 
     function onSettingClick() {
         settingPage.toggle();

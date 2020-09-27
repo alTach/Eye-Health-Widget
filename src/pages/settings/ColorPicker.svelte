@@ -1,21 +1,23 @@
 <script>
-    import {colors} from '../../constant';
-    import {primaryColor} from "../../store";
+  import {colors} from '../../constant';
+  import {primaryColor} from "../../store/store";
 
-    function selectPrimaryColor(color) {
-        primaryColor.set(color)
+  function selectPrimaryColor(color) {
+    if ($primaryColor !== color) {
+      primaryColor.set(color)
     }
+  }
 
-    primaryColor.subscribe(data => {
-        const html = document.querySelector('html');
-        html.setAttribute('data-primary', data.className);
-    })
+  primaryColor.subscribe(data => {
+    const html = document.querySelector('html');
+    html.setAttribute('data-primary', data.className);
+  })
 </script>
 
 <div class="colors">
     {#each colors as color}
         <button
-                on:click={() => $primaryColor !== color && selectPrimaryColor(color)}
+                on:click={() => selectPrimaryColor(color)}
                 tabindex="{$primaryColor === color ? -1 : 0}"
                 class:active={$primaryColor === color} class="{'color ' + color.className}"></button>
     {/each}

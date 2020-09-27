@@ -7,7 +7,7 @@
     import PageHeader from "../../components/PageHeader.svelte";
     import CloseIcon from "../../components/CloseIcon.svelte";
     import IconBack from "./IconBack.svelte";
-    import {settingPage} from "../../store";
+    import {settingPage} from "../../store/store";
 
     const titles = [lang.page.settings.header.general, lang.page.settings.header.account];
 
@@ -17,10 +17,6 @@
     function selectActiveTitle(title, e) {
         activeTitle = title;
         activeElementLeft = e.target.offsetLeft;
-    }
-
-    function setTime(time) {
-        console.log(time);
     }
 
     function updateNotificationSound(e) {
@@ -42,11 +38,12 @@
         </PageHeader>
         <div class="body">
             <div class="body__head body-head">
-                {#each titles as title}
-                    <button on:click={(e) => selectActiveTitle(title, e)} class="body-head__title"
-                            class:active={title === activeTitle}>{title}</button>
-                {/each}
+                <button on:click={(e) => selectActiveTitle(titles[0], e)} class="body-head__title"
+                        class:active={titles[0] === activeTitle}>{titles[0]}</button>
                 <div class="body-head__line" style="left: {activeElementLeft}px"></div>
+
+                <button disabled on:click={(e) => selectActiveTitle(titles[1], e)} class="body-head__title"
+                        class:active={titles[1] === activeTitle}>{titles[1]}</button>
             </div>
             <div class="body__checkboxes">
                 <label class="body__checkbox body-checkbox">
@@ -59,7 +56,7 @@
                 <!--            </label>-->
             </div>
             <div class="body__timer">
-                {lang.page.settings.body.timerTitle} <TimerContorl on:time={setTime} /> {lang.page.settings.body.minutesMin}
+                {lang.page.settings.body.timerTitle} <TimerContorl/> {lang.page.settings.body.minutesMin}
             </div>
             <ColorPicker/>
         </div>
@@ -97,8 +94,10 @@
         &__title {
             font-size: 18px;
             font-weight: 700;
-            color: rgba(#555D73, .3); // TODO make other decision
-            cursor: pointer;
+            color: rgba(#555D73, .3);
+            &[disabled] {
+                cursor: default;
+            }
         }
 
         &__title:first-child {
