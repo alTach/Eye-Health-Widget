@@ -20,7 +20,7 @@
 
         <div class="body">
             <Countdown />
-<!--            <Scenes />-->
+            <Scenes />
         </div>
     </div>
 </div>

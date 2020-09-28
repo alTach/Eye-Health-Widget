@@ -1,25 +1,24 @@
 <script>
-    import * as lang from '../../../i18n/en.json'
+  import * as lang from '../../../i18n/en.json'
+  import Face from "./Face.svelte";
 
-    let activeScene = "nearFar";
-    const titleArr = {
-        "nearFar": "",
-        "upDown": "",
-        "inCircle": "",
-        "blink": "",
-    };
+  let activeScene = "nearFar";
+  const titleArr = {
+    "nearFar": "",
+    "upDown": "",
+    "inCircle": "",
+    "blink": "",
+  };
 
-    function selectActive(key) {
-        activeScene = key;
-    }
+  function selectActive(key) {
+    activeScene = key;
+  }
 
 </script>
 
 <div class="scenes">
     <div class="scenes__body">
-        <div class="face">
-            <div class="face__eye"></div>
-        </div>
+        <Face />
         <div class="face__info">{lang.page.scenes.eyes[titleArr]}</div>
         <div class="face__next"></div>
     </div>
@@ -36,13 +35,6 @@
 
 <style lang="scss">
     @import "../../../styles/variable";
-    .face {
-        width: 150px;
-        height: 150px;
-        background-color: var(--primary);
-        border-radius: 50%;
-    }
-
     .scenes-footer {
         $left: 40px;
         padding: 35px 0;
