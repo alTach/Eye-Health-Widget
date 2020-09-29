@@ -1,6 +1,21 @@
 <script>
   import Eye from "./Eye.svelte";
+  import {trainTimeSec} from "../../../constant";
 
+  const rotateStart = 45;
+  const rotateEnd = 405;
+  let rotate = rotateStart;
+
+  const startTraining = () => {
+    rotate = rotateEnd;
+    setTimeout(() => {
+      rotate = rotateStart;
+    }, trainTimeSec * 1000)
+  }
+
+  setTimeout(() => {
+    startTraining();
+  })
 </script>
 
 <div class="face">
@@ -8,7 +23,7 @@
         <Eye />
         <Eye />
     </div>
-    <div class="face__moon" style="transform: rotate(360deg)"></div>
+    <div class="face__moon" style="transform: rotate({rotate}deg);transition-duration: {trainTimeSec}s;;"></div>
 </div>
 
 
@@ -32,19 +47,15 @@
         &__moon {
             width: 10px;
             height: 10px;
-            background: red;
+            background: var(--primary);
             border-radius: 50%;
             position: absolute;
             top: 10px;
             left: 10px;
+            transform: rotate(45deg);
             transform-origin: 65px 65px;
-            /*animation: moving .4s infinite linear*/
-
+            transition-property: transform;
+            transition-timing-function: linear;
         }
     }
-    @keyframes moving {
-        100% {transform: rotate(-360deg);}
-    }
-
-
 </style>

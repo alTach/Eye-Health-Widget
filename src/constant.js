@@ -25,3 +25,5 @@ export const colors = [
         className: 'color_light-pink'
     },
 ];
+
+export const trainTimeSec = 20;
