@@ -1,8 +1,10 @@
 <script>
-  import * as lang from '../../../i18n/en.json'
+  import {local} from "../../../store/localozation";
   import Face from "./Face.svelte";
 
   let activeScene = "nearFar";
+
+
   const titleArr = {
     "nearFar": "",
     "upDown": "",
@@ -19,7 +21,7 @@
 <div class="scenes">
     <div class="scenes__body">
         <Face />
-        <div class="face__info">{lang.page.scenes.eyes[titleArr]}</div>
+        <div class="face__info">{$local.page.scenes.eyes[titleArr]}</div>
         <div class="face__next"></div>
     </div>
     <div class="scenes__footer scenes-footer">

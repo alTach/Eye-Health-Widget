@@ -32,7 +32,7 @@
 
     .shut {
         width: 150%;
-        height: 40px;
+        height: 33px;
         position: absolute;
         top: 50%;
         left: 50%;

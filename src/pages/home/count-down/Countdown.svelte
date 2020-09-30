@@ -1,6 +1,6 @@
 <script>
-    import PieChar from "./PieChar.svelte";
-    import * as lang from '../../../i18n/en.json'
+  import {local} from "../../../store/localozation";
+  import PieChar from "./PieChar.svelte";
     import {timer} from "../../../store/store-timer";
 </script>
 
@@ -10,7 +10,7 @@
     </div>
     <div class="timer">
         <div class="time">{$timer}</div>
-        <div class="time__title">{lang.page.countdown.timer__title}</div>
+        <div class="time__title">{$local.page.countdown.timer__title}</div>
     </div>
 </div>
 

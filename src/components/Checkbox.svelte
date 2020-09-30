@@ -17,7 +17,7 @@
 
 
 <style lang="scss">
-    @import "../../styles/variable";
+    @import "../styles/variable";
     .check {
         cursor: pointer;
     }
