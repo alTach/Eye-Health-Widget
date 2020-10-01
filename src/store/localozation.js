@@ -10,5 +10,4 @@ const localList = [
 
 export const languages = readable(localList);
 export const activeLanguage = writable(localList[0]);
-activeLanguage.subscribe(data => console.log(data, 123));
 export const local = derived(activeLanguage, (activeLang) => activeLang.val);

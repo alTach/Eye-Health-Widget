@@ -5,7 +5,7 @@
   import IconBack from "./IconBack.svelte";
   import BodyHead from "./body/BodyHead.svelte";
   import BodyCheckboxes from "./body/BodyCheckboxes.svelte";
-  import BodyLanguages from "./body/BodyLanguages.svelte";
+  import BodyLanguages from "./body/body-languages/BodyLanguages.svelte";
   import BodyTimer from "./body/BodyTimer.svelte";
   import {settingPage} from "../../store/store";
 
