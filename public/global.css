@@ -111,31 +111,44 @@ button:focus {
 :root {
 	--primary: #7C8BF7;
 
-	--pink: #EB87FF;
-	--light-pink: #F7C4F0;
-	--red: #FF5EA6;
-	--gray: #f0f3f7;
-	--blue: #7C8BF7;
-	--blue-light: #78B5FF;
-	--purple: #7C8BF7;
-	--black: #555D73;
+	/*theme*/
+	--rgb-blue: 124, 139, 247;
+	--rgb-blue-light: 120, 181, 255;
+	--rgb-purple: 124, 139, 247;
+	--rgb-pink: 235, 135, 255;
+	--rgb-red: 255, 94, 166;
+	--rgb-light-pink: 247, 196, 240;
+
+	--blue: rgb(var(--rgb-blue));
+	--blue-light: rgb(var(--rgb-blue-light));
+	--purple: rgb(var(--rgb-purple));
+	--pink: rgb(var(--rgb-pink));
+	--red: rgb(var(--rgb-red));
+	--light-pink: rgb(var(--rgb-light-pink));
+
+	/*other color*/
+	--rgb-gray: 240, 243, 247;
+	--rgb-black: 85, 93, 115;
+
+	--gray: rgb(var(--rgb-gray));
+	--black: rgb(var(--rgb-black));
 }
 
-[data-primary="color_blue"] {
-	--primary: #7C8BF7;
+[data-primary='color_blue'] {
+	--primary: var(--blue);
 }
-[data-primary="color_blue-light"] {
-	--primary: #78B5FF
+[data-primary='color_blue-light'] {
+	--primary: var(--blue-light);
 }
-[data-primary="color_purple"] {
-	--primary: #7C8BF7;
+[data-primary='color_purple'] {
+	--primary: var(--purple);
 }
-[data-primary="color_pink"] {
-	--primary: #EB87FF
+[data-primary='color_pink'] {
+	--primary: var(--pink);
 }
-[data-primary="color_red"] {
-	--primary: #FF5EA6;
+[data-primary='color_red'] {
+	--primary: var(--red);
 }
-[data-primary="color_light-pink"] {
-	--primary: #F7C4F0;
+[data-primary='color_light-pink'] {
+	--primary: var(--light-pink);
 }
