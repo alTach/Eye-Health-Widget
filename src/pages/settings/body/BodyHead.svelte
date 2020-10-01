@@ -2,7 +2,7 @@
   import {local} from "../../../store/localozation";
 
   // <-- tools
-  const calcActiveElementLeft = () => activeElementLeft = activeElement.offsetLeft;
+  const calcActiveElementLeft = () => activeElementLeft = activeElement ? activeElement.offsetLeft : 0;
 
   // <-- variables
   let activeElement;

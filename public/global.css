@@ -109,8 +109,6 @@ button:focus {
 
 
 :root {
-	--primary: #7C8BF7;
-
 	/*theme*/
 	--rgb-blue: 124, 139, 247;
 	--rgb-blue-light: 120, 181, 255;
@@ -132,23 +130,32 @@ button:focus {
 
 	--gray: rgb(var(--rgb-gray));
 	--black: rgb(var(--rgb-black));
+
+	--primary: var(--blue);
+	--rgb-primary: rgb(var(--blue));
 }
 
 [data-primary='color_blue'] {
 	--primary: var(--blue);
+	--rgb-primary: var(--rgb-blue);
 }
 [data-primary='color_blue-light'] {
 	--primary: var(--blue-light);
+	--rgb-primary: var(--rgb-blue-light);
 }
 [data-primary='color_purple'] {
 	--primary: var(--purple);
+	--rgb-primary: var(--rgb-purple);
 }
 [data-primary='color_pink'] {
 	--primary: var(--pink);
+	--rgb-primary: var(--rgb-pink);
 }
 [data-primary='color_red'] {
 	--primary: var(--red);
+	--rgb-primary: var(--rgb-red);
 }
 [data-primary='color_light-pink'] {
 	--primary: var(--light-pink);
+	--rgb-primary: var(--rgb-light-pink);
 }

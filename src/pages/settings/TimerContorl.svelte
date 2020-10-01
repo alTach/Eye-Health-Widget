@@ -1,11 +1,18 @@
 <script>
     import {timer} from "../../store/store-timer";
+    import {minMinutes, maxMinutes} from "../../constant";
 </script>
 
 <div class="timer">
-    <button class="timer__decrement timer__action" on:click={timer.decrement}></button>
+    <button disabled="{$timer.native.minutes === minMinutes}"
+            class="timer__decrement timer__action"
+            on:click={timer.decrement}>
+    </button>
     <input class="timer__time" type="number" min="0" max="999" bind:value={$timer.native.minutes}>
-    <button class="timer__increment timer__action" on:click={timer.increment}></button>
+    <button disabled="{$timer.native.minutes === maxMinutes}"
+            class="timer__increment timer__action"
+            on:click={timer.increment}>
+    </button>
 </div>
 
 <style lang="scss">
@@ -44,6 +51,10 @@
         background-position: center;
         background-size: 65%;
         background-repeat: no-repeat;
+        &[disabled] {
+            opacity: .3;
+            cursor: default;
+        }
     }
 
     .timer__decrement {

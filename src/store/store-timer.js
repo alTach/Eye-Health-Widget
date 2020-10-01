@@ -1,10 +1,10 @@
 import {writable} from "svelte/store";
+import {maxMinutes, minMinutes} from "../constant";
 
 const defaultTimerTime = 1;
 
 function createTimer(minutes) {
   const getTimeData = (minutes) => {
-    console.log(minutes * 60);
     return {
       totalSeconds: minutes * 60,
       native: {
@@ -63,15 +63,23 @@ function createTimer(minutes) {
   return {
     subscribe,
     set: () => update(timer => {
-      timer.minutes =  timer.native.minutes
+      if (timer.native.minutes < minMinutes) {
+        timer.minutes = minMinutes
+      } else if (timer.native.minutes > maxMinutes) {
+        timer.minutes = maxMinutes;
+      } else {
+        timer.minutes =  timer.native.minutes
+      }
       return timer;
     }),
     increment: () => update(timer => {
-      timer.minutes =  timer.native.minutes + 1
+      const minutes = timer.native.minutes + 1;
+      timer.minutes = minutes > maxMinutes ? maxMinutes : minutes;
       return timer;
     }),
     decrement: () => update(timer => {
-      timer.minutes =  timer.native.minutes - 1
+      const minutes = timer.native.minutes - 1;
+      timer.minutes = minutes < minMinutes ? minMinutes : minutes;
       return timer;
     }),
   }
