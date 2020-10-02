@@ -1,6 +1,6 @@
 <script>
-  import {colors} from '../../constant';
-  import {primaryColor} from "../../store/store";
+  import {colors} from "../../store/store-color";
+  import {primaryColor} from "../../store/store-color";
 
   function selectPrimaryColor(color) {
     if ($primaryColor !== color) {
@@ -15,7 +15,7 @@
 </script>
 
 <div class="colors">
-    {#each colors as color}
+    {#each $colors as color}
         <button
                 on:click={() => selectPrimaryColor(color)}
                 tabindex="{$primaryColor === color ? -1 : 0}"

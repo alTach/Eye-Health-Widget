@@ -1,9 +1,10 @@
 <script>
   import Checkbox from "../../../components/Checkbox.svelte";
   import {local} from "../../../store/localozation";
+  import {enableSoundNotification} from "../../../store/store";
 
   function updateNotificationSound(e) {
-    enableSoundNotification = e.detail;
+    enableSoundNotification.set(e.detail);
   }
 </script>
 
