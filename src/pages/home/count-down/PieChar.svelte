@@ -5,32 +5,30 @@
   const subscribeToTimer = () => timer.subscribe((timer) => timerChangesHandler(timer));
   const timerChangesHandler = (timer) => isNewTimer(timer) ? initWatch(timer) : doStep();
   const isNewTimer = (timer) => isTimeChangedFromSetting(timer) || didTheTimerStart(timer);
-  const isTimeChangedFromSetting = (timer) => timerMinutes !== timer.native.minutes;
-  const didTheTimerStart = (timer) => totalSeconds === timer.totalSeconds;
+  const isTimeChangedFromSetting = (timer) => localTimerMinutes !== timer.native.minutes;
+  const didTheTimerStart = (timer) => localTotalSeconds === timer.totalSeconds;
   const initWatch = (timer) => {
     resetTimerMinutes(timer);
     resetTimerSeconds(timer);
     initStep();
     initDashArray(timer);
   }
-  const resetTimerMinutes = (timer) => timerMinutes = timer.native.minutes;
-  const resetTimerSeconds = (timer) => totalSeconds = timer.native.minutes * 60;
+  const resetTimerMinutes = (timer) => localTimerMinutes = timer.native.minutes;
+  const resetTimerSeconds = (timer) => localTotalSeconds = timer.native.minutes * 60;
   const initStep = () => step = getStep();
-  const initDashArray = (timer) => dashArrayValue = didTheTimerStart(timer) ? 0 : getSkippedDashArrayValue(timer);
-  const getStep = () => +parseFloat(dashArrayMax / totalSeconds).toFixed(2);
+  const initDashArray = (timer) => clockArrowPositionStart = didTheTimerStart(timer) ? 0 : getSkippedDashArrayValue(timer);
+  const getStep = () => +parseFloat(clockArrowPositionMax / localTotalSeconds).toFixed(2);
   const getSkippedDashArrayValue = (timer) => {
-    const skippedStepCount = totalSeconds - timer.totalSeconds;
+    const skippedStepCount = localTotalSeconds - timer.totalSeconds;
     return skippedStepCount * step; // 🕗
   };
-  const doStep = () => dashArrayValue += step;
-
-  // <-- constant
-  const dashArrayMax = 158;
+  const doStep = () => clockArrowPositionStart += step;
 
   // <-- variable
-  let timerMinutes = 0;
-  let totalSeconds = 0;
-  let dashArrayValue = 0;
+  let localTimerMinutes = 0;
+  let localTotalSeconds = 0;
+  let clockArrowPositionStart = 0;
+  const clockArrowPositionMax = 158;
   let step = 0;
 
   // <-- subscription
@@ -40,7 +38,7 @@
 </script>
 
 <svg width="75" height="75" class="animate">
-    <circle r="25" cx="50%" cy="50%" style="stroke-dasharray: {dashArrayValue} {dashArrayMax}"/>
+    <circle r="25" cx="50%" cy="50%" style="stroke-dasharray: {clockArrowPositionStart} {clockArrowPositionMax}"/>
 </svg>
 
 
