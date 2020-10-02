@@ -4,10 +4,7 @@
       "timer__title": "Оставшееся время"
     },
     "settings": {
-      "header": {
-        "general": "Основное",
-        "account": "Аккаунт"
-      },
+      "header": ["Основное", "Аккаунт"],
       "body": {
         "soundTitle": "Включить звуковое уведомление",
         "colorTitle": "Auto-adjust for save colors",

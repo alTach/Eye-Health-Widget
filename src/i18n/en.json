@@ -4,10 +4,7 @@
       "timer__title": "Time remaining"
     },
     "settings": {
-      "header": {
-        "general": "general",
-        "account": "account"
-      },
+      "header": ["general", "account"],
       "body": {
         "soundTitle": "Enable sound notifications",
         "colorTitle": "Auto-adjust for save colors",

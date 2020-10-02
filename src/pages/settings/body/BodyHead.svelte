@@ -34,7 +34,7 @@
 
 <div class="head">
 
-    {#each [$local.page.settings.header.general, $local.page.settings.header.account] as title, index}
+    {#each $local.page.settings.header as title, index}
         <button on:click={(e) => selectActiveTitle(index, e)}
                 class="head__title"
                 disabled="index !== 0"
