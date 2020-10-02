@@ -1,12 +1,22 @@
 <script>
-    import Settings from "./pages/settings/Settings.svelte";
-    import Home from "./pages/home/Home.svelte";
+  import Settings from "./pages/settings/Settings.svelte";
+  import Home from "./pages/home/Home.svelte";
+  import Scene from "./pages/scene/Scene.svelte";
+  import {Router, Link, Route} from "svelte-routing";
+  import {router} from "./routing";
 
+  export let url = "";
 </script>
 
 <main>
-    <Home />
-    <Settings />
+    <Router url="{url}">
+        <Route path="{router.home.path}" component="{Home}"/>
+        <Route path="{router.settings.path}" component="{Settings}"/>
+        <Route path="{router.scene.path}" component="{Scene}"/>
+        <!--<Route path="/">-->
+        <!--    <Home/>-->
+        <!--</Route>-->
+    </Router>
 </main>
 
 <style>

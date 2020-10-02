@@ -1,6 +1,6 @@
 <script>
   import Eye from "./Eye.svelte";
-  import {trainTimeSec} from "../../../constant";
+  import {trainTimeSec} from "../../constant";
 
   const rotateStart = 45;
   const rotateEnd = 405;
@@ -28,7 +28,7 @@
 
 
 <style lang="scss">
-    @import "../../../styles/variable";
+    @import "../../styles/variable";
     $face-w: 150px;
     .face {
         width: $face-w;

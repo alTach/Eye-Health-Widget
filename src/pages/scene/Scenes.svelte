@@ -1,5 +1,5 @@
 <script>
-  import {local} from "../../../store/localozation";
+  import {local} from "../../store/localozation";
   import Face from "./Face.svelte";
 
   let activeScene = "nearFar";
@@ -36,7 +36,7 @@
 </div>
 
 <style lang="scss">
-    @import "../../../styles/variable";
+    @import "../../styles/variable";
     .scenes-footer {
         $left: 40px;
         padding: 35px 0;

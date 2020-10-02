@@ -1,7 +1,7 @@
 <script>
   import {local} from "../../../store/localozation";
   import PieChar from "./PieChar.svelte";
-    import {timer} from "../../../store/store-timer";
+  import {timer} from "../../../store/store-timer";
 </script>
 
 <div class="countdown">
@@ -9,7 +9,7 @@
         <PieChar/>
     </div>
     <div class="timer">
-        <div class="time">{$timer}</div>
+        <div class="timer__time">{$timer}</div>
         <div class="time__title">{$local.page.countdown.timer__title}</div>
     </div>
 </div>
@@ -29,7 +29,7 @@
         margin-right: 25px;
     }
 
-    .time {
+    .timer__time {
         font-size: 40.17px;
         font-weight: 700;
         text-align: center;

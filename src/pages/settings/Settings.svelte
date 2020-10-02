@@ -7,54 +7,29 @@
   import BodyCheckboxes from "./body/BodyCheckboxes.svelte";
   import BodyLanguages from "./body/body-languages/BodyLanguages.svelte";
   import BodyTimer from "./body/BodyTimer.svelte";
-  import {settingPage} from "../../store/store";
-
-
-  let containerNode;
+  import PageContainer from "../../components/PageContainer.svelte";
+  import {Link} from "svelte-routing";
+  import {router} from "../../routing";
 </script>
 
-<div class="container"
-     bind:this={containerNode}
-     class:active={$settingPage}
-     style="height: {$settingPage ? containerNode.scrollHeight : 0}px">
-    <div class="setting">
-        <PageHeader>
-            <IconBack on:click={settingPage.close}/>
-            <CloseIcon/>
-        </PageHeader>
-        <div class="body">
-            <BodyHead/>
-            <BodyCheckboxes/>
-            <BodyLanguages/>
-            <BodyTimer/>
-            <ColorPicker/>
-        </div>
+<PageContainer>
+    <PageHeader>
+        <Link to="{router.home.path}"><IconBack/></Link>
+        <CloseIcon/>
+    </PageHeader>
+    <div class="body">
+        <BodyHead/>
+        <BodyCheckboxes/>
+        <BodyLanguages/>
+        <BodyTimer/>
+        <ColorPicker/>
     </div>
-</div>
+</PageContainer>
 
 
 <style lang="scss">
     @import "../../styles/variable";
-
-    .container {
-        position: relative;
-        left: 10px;
-        transition: left .2s ease, height .2s ease;
-
-        &:not(.active) {
-            padding: 0;
-        }
-
-        &.active {
-            left: -100%;
-        }
-    }
-
-    .setting {
-        width: 100%;
-    }
-
     .body {
-        padding: 40px 0 55px;
+        padding: 40px 16px 55px;
     }
 </style>

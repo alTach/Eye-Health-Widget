@@ -1,21 +1,27 @@
 <script>
-  import Countdown from "./count-down/Countdown.svelte";
   import PageHeader from "../../components/PageHeader.svelte";
-  import IconSettings from "../../components/IconSettings.svelte";
   import CloseIcon from "../../components/CloseIcon.svelte";
+  import IconSettings from "../../components/IconSettings.svelte";
+  import Countdown from "../home/count-down/Countdown.svelte";
+  import Scenes from "./Scenes.svelte";
   import PageContainer from "../../components/PageContainer.svelte";
-  import {Link} from "svelte-routing";
   import {router} from "../../routing";
+  import {Link} from "svelte-routing";
+
+
 </script>
 
 <PageContainer>
     <PageHeader>
-        <Link to="{router.settings.path}"><IconSettings/></Link>
-        <CloseIcon />
+        <Link to="{router.settings.path}">
+            <IconSettings/>
+        </Link>
+        <CloseIcon/>
     </PageHeader>
 
     <div class="body">
-        <Countdown />
+        <Countdown/>
+        <Scenes/>
     </div>
 </PageContainer>
 
