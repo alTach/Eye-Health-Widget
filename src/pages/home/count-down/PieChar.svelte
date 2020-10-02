@@ -1,36 +1,42 @@
 <script>
   import {timer} from "../../../store/store-timer";
+  import {onDestroy} from "svelte";
 
-  let timerMinutes = $timer.native.minutes;
-  let totalSeconds = $timer.totalSeconds;
+  const subscribeToTimer = () => timer.subscribe((timer) => timerChangesHandler(timer));
+  const timerChangesHandler = (timer) => isNewTimer(timer) ? initWatch(timer) : doStep();
+  const isNewTimer = (timer) => isTimeChangedFromSetting(timer) || didTheTimerStart(timer);
+  const isTimeChangedFromSetting = (timer) => timerMinutes !== timer.native.minutes;
+  const didTheTimerStart = (timer) => totalSeconds === timer.totalSeconds;
+  const initWatch = (timer) => {
+    resetTimerMinutes(timer);
+    resetTimerSeconds(timer);
+    initStep();
+    initDashArray(timer);
+  }
+  const resetTimerMinutes = (timer) => timerMinutes = timer.native.minutes;
+  const resetTimerSeconds = (timer) => totalSeconds = timer.native.minutes * 60;
+  const initStep = () => step = getStep();
+  const initDashArray = (timer) => dashArrayValue = didTheTimerStart(timer) ? 0 : getSkippedDashArrayValue(timer);
+  const getStep = () => +parseFloat(dashArrayMax / totalSeconds).toFixed(2);
+  const getSkippedDashArrayValue = (timer) => {
+    const skippedStepCount = totalSeconds - timer.totalSeconds;
+    return skippedStepCount * step; // 🕗
+  };
+  const doStep = () => dashArrayValue += step;
+
+  // <-- constant
+  const dashArrayMax = 158;
+
+  // <-- variable
+  let timerMinutes = 0;
+  let totalSeconds = 0;
+  let dashArrayValue = 0;
   let step = 0;
 
-  const dashArrayMax = 158;
-  let dashArrayValue = 0;
+  // <-- subscription
+  let timerSubscriber = subscribeToTimer();
 
-
-  const isNewTimer = (timer) => {
-    return timerMinutes !== timer.native.minutes || timer.totalSeconds === totalSeconds;
-  }
-
-  const getStep = (seconds) => {
-    return +parseFloat(dashArrayMax / seconds).toFixed(2);
-  }
-
-  const resetCountDown = (timer) => {
-    timerMinutes = timer.native.minutes;
-    totalSeconds = timer.native.minutes * 60;
-    dashArrayValue = 0;
-    step = getStep(timer.totalSeconds)
-  }
-
-  timer.subscribe((timer) => {
-    if (isNewTimer(timer)) {
-      resetCountDown(timer);
-    } else {
-      dashArrayValue += step;
-    }
-  })
+  onDestroy(timerSubscriber);
 </script>
 
 <svg width="75" height="75" class="animate">

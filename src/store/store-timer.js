@@ -1,7 +1,5 @@
 import {writable} from "svelte/store";
-import {maxMinutes, minMinutes} from "../constant";
-
-const defaultTimerTime = 1;
+import {defaultTimerTimeInMinutes, maxMinutes, minMinutes} from "../constant";
 
 function createTimer(minutes) {
   const getTimeData = (minutes) => {
@@ -27,7 +25,6 @@ function createTimer(minutes) {
       restart: function() {
         this.totalSeconds = this.native.minutes * 60;
       },
-
 
       toString: function() {
         const minutes = parseInt(this.totalSeconds / 60, 10);
@@ -85,4 +82,4 @@ function createTimer(minutes) {
   }
 }
 
-export const timer = createTimer(defaultTimerTime);
+export const timer = createTimer(defaultTimerTimeInMinutes);
