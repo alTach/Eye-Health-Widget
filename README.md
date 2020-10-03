@@ -1,3 +1,5 @@
+Design get from [YouTube](https://www.youtube.com/watch?v=6T2AT6jjnA4&list=PLX__uTl5NddS-p3sYTEoLk0uZlrkXrpqt&index=14&ab_channel=AdobeCreativeCloud)
+
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---

@@ -48,6 +48,7 @@
 
 
 <style lang="scss">
+    @import "src/styles/variable/index";
     .head {
         display: flex;
         padding-bottom: 10px;
@@ -58,7 +59,7 @@
     .head__title {
         font-size: 18px;
         font-weight: 700;
-        color: rgba(#555D73, .3);
+        color: rgba($east-bay, .3);
 
         &[disabled] {
             cursor: default;

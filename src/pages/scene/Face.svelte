@@ -13,9 +13,7 @@
     }, trainTimeSec * 1000)
   }
 
-  setTimeout(() => {
-    startTraining();
-  })
+  startTraining();
 </script>
 
 <div class="face">
@@ -23,16 +21,17 @@
         <Eye />
         <Eye />
     </div>
-    <div class="face__moon" style="transform: rotate({rotate}deg);transition-duration: {trainTimeSec}s;;"></div>
+    <div class="face__moon" style="transform: rotate({rotate}deg);"></div>
 </div>
 
 
 <style lang="scss">
-    @import "../../styles/variable";
+    @import "../../styles/variable/index";
     $face-w: 150px;
     .face {
         width: $face-w;
         height: $face-w;
+        margin: 0 auto;
         background-color: var(--primary);
         border-radius: 50%;
         position: relative;

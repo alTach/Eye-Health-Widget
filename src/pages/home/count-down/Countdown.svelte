@@ -15,7 +15,7 @@
 </div>
 
 <style lang="scss">
-    @import "../../../styles/variable";
+    @import "../../../styles/variable/index";
 
     .countdown {
         display: flex;

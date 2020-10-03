@@ -18,6 +18,9 @@
         "upDown": "Look up and down",
         "inCircle": "Roll eyes in a circle",
         "blink": "Blink several times"
+      },
+      "footer": {
+        "skip": "skip"
       }
     },
     "contact": {

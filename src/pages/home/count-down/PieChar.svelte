@@ -43,7 +43,7 @@
 
 
 <style lang="scss">
-    @import "../../../styles/variable";
+    @import "../../../styles/variable/index";
 
     svg {
         padding: 8px;
@@ -55,7 +55,7 @@
 
     circle {
         fill: transparent;
-        stroke: #fff;
+        stroke: $white;
         stroke-width: 50;
     }
 </style>

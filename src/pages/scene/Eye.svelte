@@ -9,6 +9,7 @@
 
 
 <style lang="scss">
+    @import "src/styles/variable/index";
     $eye-w: 40px;
     .eye {
         width: $eye-w;
@@ -21,9 +22,9 @@
     .ball {
         width: 15%;
         height: 15%;
-        background: #222f3e;
+        background: $midnight;
         border-radius: 50%;
-        border: 6px solid #576574;
+        border: 6px solid $blue-bayoux;
         position: absolute;
         top: 50%;
         left: 50%;

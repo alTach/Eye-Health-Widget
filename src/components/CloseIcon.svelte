@@ -8,7 +8,6 @@
 </script>
 
 <style lang="scss">
-    @import '../styles/variable.scss';
     button {
         width: 36.92px;
         height: 36.92px;

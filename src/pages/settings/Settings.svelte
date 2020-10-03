@@ -28,7 +28,7 @@
 
 
 <style lang="scss">
-    @import "../../styles/variable";
+    @import "../../styles/variable/index";
     .body {
         padding: 40px 16px 55px;
     }

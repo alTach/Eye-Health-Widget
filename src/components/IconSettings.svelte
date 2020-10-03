@@ -14,7 +14,6 @@
 </button>
 
 <style lang="scss">
-    @import '../styles/variable.scss';
 
     button {
         $py: 5px;

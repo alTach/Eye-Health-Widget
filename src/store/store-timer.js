@@ -12,9 +12,6 @@ function createTimer(minutes) {
         this.totalSeconds = minutes * 60;
         this.native.minutes = minutes;
       },
-      // set seconds(seconds) {
-      //   this.totalSeconds = seconds;
-      // },
 
       pause: function() {
         clearInterval(timerId);
@@ -43,7 +40,7 @@ function createTimer(minutes) {
     return setInterval(() => {
       update(timer => {
         if (timer.totalSeconds === 0) {
-          timer.restart();
+          timer.pause();
         } else {
           timer.totalSeconds = timer.totalSeconds - 1;
         }

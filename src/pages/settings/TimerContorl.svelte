@@ -16,7 +16,7 @@
 </div>
 
 <style lang="scss">
-    @import "../../styles/variable";
+    @import "../../styles/variable/index";
 
     input::-webkit-inner-spin-button,
     input::-webkit-outer-spin-button {
