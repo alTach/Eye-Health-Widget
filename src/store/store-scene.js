@@ -25,7 +25,16 @@ function getSceneStore(scenes) {
     update(scene => {
       scene._position = index ?? scene.position + 1;
       scene._active = scene.list[scene.position];
-      faceMoonRotate.restart()
+      faceMoonRotate.restart();
+      return scene;
+    })
+  }
+
+  function reset(autoPlay = true) {
+    update(scene => {
+      scene._position = 0;
+      scene._active = scene._list[scene.position];
+      faceMoonRotate.restart(autoPlay)
       return scene;
     })
   }
@@ -38,21 +47,14 @@ function getSceneStore(scenes) {
     })
   }
 
-  function restart() {
-    update(scene => {
-      scene._position = 0;
-      scene._active = scene._list[scene.position];
-      faceMoonRotate.restart(false)
-      return scene;
-    })
-  }
-
 
   return {
     subscribe,
     set,
     next,
-    restart,
+    play: () => faceMoonRotate.play(),
+    stop: () => faceMoonRotate.pause(),
+    reset,
     changeSceneTextLang
   };
 }

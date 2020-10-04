@@ -21,9 +21,9 @@ function getMoonStore() {
   function pause(){
     set(getPosition());
   }
-  function restart(isStart){
+  function restart(autoPlay = true){
     set(faceMoonRotateStart, {duration: 0});
-    if (isStart) {
+    if (autoPlay) {
       set(faceMoonRotateEnd, {duration: trainTimeSec});
     }
   }

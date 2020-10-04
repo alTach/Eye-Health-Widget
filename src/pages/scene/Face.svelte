@@ -2,10 +2,11 @@
   import Eye from "./Eye.svelte";
   import {faceMoonRotate} from "../../store/sore-moon";
   import {onDestroy} from "svelte";
+  import {sceneStore} from "../../store/store-scene";
 
-  faceMoonRotate.play();
+  sceneStore.play();
 
-  onDestroy(() => faceMoonRotate.pause());
+  onDestroy(() => sceneStore.stop());
 </script>
 
 <div class="face">
