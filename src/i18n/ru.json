@@ -4,7 +4,7 @@
       "timer__title": "Оставшееся время"
     },
     "settings": {
-      "header": ["Основное", "Аккаунт"],
+      "header": ["основное", "аккаунт"],
       "body": {
         "soundTitle": "Включить звуковое уведомление",
         "colorTitle": "Auto-adjust for save colors",
@@ -20,7 +20,7 @@
         "blink": "Закрывайте и открывайте глаза"
       },
       "footer": {
-          "skip": "Пропустить"
+          "skip": "пропустить"
       }
     },
     "contact": {

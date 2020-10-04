@@ -1,81 +1,65 @@
 import {derived, writable} from "svelte/store";
 import {activeLanguage, local} from "./localozation";
+import {faceMoonRotate} from "./sore-moon";
 
 function getSceneStore(scenes) {
-  let timerId;
   const data = {
     _position: 0,
-    set position(index) {
-      this._position = index;
-      this.activeScenes = this.scenes[index];
-    },
     get position() {
       return this._position;
     },
-    _scenes: scenes,
-    set scenes(sceneList) {
-      this._scenes = sceneList;
-      this.activeScenes = sceneList[this.position]
+    _list: scenes,
+    get list() {
+      return this._list;
     },
-    get scenes() {
-      return this._scenes;
-    },
-    activeScenes: scenes[0],
+    _active: scenes[0],
+    get active() {
+      return this._active;
+    }
   };
 
 
   const {subscribe, set, update} = writable(data);
 
-  function startTimer() {
-    stopTimer();
-    timerId = setInterval(() =>
-      update(scene => (stopTimer(), scene))
-    , 1000);
-  }
-
-  function stopTimer() {
-    if (timerId) {
-      clearInterval(timerId);
-    }
-  }
-
-  function restartScene() {
+  function next(index) {
     update(scene => {
-      scene.position = 0;
-      return scene;
-    });
-    startTimer();
-  }
-
-  function nextScene(index) {
-    update(scene => {
-      scene.position = index ?? scene.position + 1;
+      scene._position = index ?? scene.position + 1;
+      scene._active = scene.list[scene.position];
+      faceMoonRotate.restart()
       return scene;
     })
   }
 
-  function updateScenesText(sceneList) {
+  function changeSceneTextLang(sceneList) {
     update(scene => {
-      scene.scenes = sceneList;
+      scene._list = sceneList;
+      scene._active = sceneList[scene.position]
       return scene;
     })
   }
+
+  function restart() {
+    update(scene => {
+      scene._position = 0;
+      scene._active = scene._list[scene.position];
+      faceMoonRotate.restart(false)
+      return scene;
+    })
+  }
+
 
   return {
     subscribe,
     set,
-    start: () => startTimer(),
-    restart: () => restartScene(),
-    pause: () => stopTimer(),
-    skip: () => {},
-    next: (index) => nextScene(index),
-    updateScenesText: (sceneList) => updateScenesText(sceneList)
+    next,
+    restart,
+    changeSceneTextLang
   };
 }
 export let sceneStore = getSceneStore([]);
 export const sceneStoreChangeLang = derived(local, lang => {
   const sceneList = Object.values(lang.page.scenes.eyes);
-  sceneStore.updateScenesText(sceneList);
+  sceneStore.changeSceneTextLang(sceneList);
 });
 sceneStoreChangeLang.subscribe(() => {});
 

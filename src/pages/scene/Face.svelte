@@ -1,19 +1,11 @@
 <script>
   import Eye from "./Eye.svelte";
-  import {trainTimeSec} from "../../constant";
+  import {faceMoonRotate} from "../../store/sore-moon";
+  import {onDestroy} from "svelte";
 
-  const rotateStart = 45;
-  const rotateEnd = 405;
-  let rotate = rotateStart;
+  faceMoonRotate.play();
 
-  const startTraining = () => {
-    rotate = rotateEnd;
-    setTimeout(() => {
-      rotate = rotateStart;
-    }, trainTimeSec * 1000)
-  }
-
-  startTraining();
+  onDestroy(() => faceMoonRotate.pause());
 </script>
 
 <div class="face">
@@ -21,7 +13,7 @@
         <Eye />
         <Eye />
     </div>
-    <div class="face__moon" style="transform: rotate({rotate}deg);"></div>
+    <div class="face__moon" style="transform: rotate({$faceMoonRotate}deg)"></div>
 </div>
 
 

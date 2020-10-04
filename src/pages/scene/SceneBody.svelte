@@ -9,7 +9,7 @@
 
 
 <Face />
-<div class="face__info">{$sceneStore.activeScenes}</div>
+<div class="face__info">{$sceneStore.active}</div>
 <button class="face__next" on:click={nextScene}></button>
 
 

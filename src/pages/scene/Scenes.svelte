@@ -18,7 +18,7 @@
     @import "../../styles/variable/index";
 
     .scenes__body {
-        padding-bottom: 50px;
+        padding: 50px 0;
         position: relative;
     }
 
@@ -26,7 +26,7 @@
         $left: 40px;
         display: flex;
         align-items: center;
-        padding: 35px 0;
+        height: 90px;
         position: relative;
 
         &:before {

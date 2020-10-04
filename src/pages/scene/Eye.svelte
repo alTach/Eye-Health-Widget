@@ -16,7 +16,7 @@
         height: $eye-w;
         background: white;
         transform: rotate(45deg);
-        border-radius: 75% 0;
+        border-radius: 75% 12%;
         overflow: hidden;
     }
     .ball {
