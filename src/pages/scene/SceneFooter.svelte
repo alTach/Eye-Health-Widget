@@ -10,7 +10,7 @@
 
   const goHome = () => {
     navigate(router.home.path)
-
+    sceneStore.reset(false);
   }
 </script>
 

@@ -1,16 +1,26 @@
 <script>
   import Face from "./Face.svelte";
   import {sceneStore} from "../../store/store-scene";
+  import {get} from "svelte/store";
+  import {navigate} from "svelte-routing";
+  import {router} from "../../routing";
 
   const nextScene = () => {
-    sceneStore.next();
+    const storeData = get(sceneStore);
+    const isSceneEnd = storeData.position === (storeData.list.length - 1);
+    if (isSceneEnd) {
+      sceneStore.reset(false);
+      navigate(router.home.path);
+    } else {
+      sceneStore.next();
+    }
   }
 </script>
 
 
 <Face />
-<div class="face__info">{$sceneStore.active}</div>
-<button class="face__next" on:click={nextScene}></button>
+<div class="scene__info">{$sceneStore.active}</div>
+<button class="scene__next" on:click={nextScene}></button>
 
 
 <style lang="scss">
@@ -18,7 +28,7 @@
 
     $next-btn-w: 50px;
 
-    .face__info {
+    .scene__info {
         text-align: center;
         margin-top: 25px;
         font-weight: 500;
@@ -29,7 +39,7 @@
     }
 
 
-    .face__next {
+    .scene__next {
         width: $next-btn-w;
         height: $next-btn-w;
         background: $white;

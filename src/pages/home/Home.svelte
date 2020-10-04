@@ -9,12 +9,20 @@
   import {Link} from "svelte-routing";
   import {router} from "../../routing";
   import {onDestroy} from "svelte";
+  import {get} from "svelte/store";
 
   const isTimerEnd = ({totalSeconds}) => totalSeconds === 0;
+  const isTimerReset = () => get(timer).totalSeconds === get(timer).native.minutes * 60;
+
+  if (isTimerReset()) {
+    timer.play();
+  }
 
   const timerSubscription = timer.subscribe(time => {
     if (isTimerEnd(time)) {
       navigate(router.scene.path)
+      timer.reset();
+      timer.stop();
     }
   })
 

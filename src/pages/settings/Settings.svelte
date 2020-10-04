@@ -8,13 +8,14 @@
   import BodyLanguages from "./body/body-languages/BodyLanguages.svelte";
   import BodyTimer from "./body/BodyTimer.svelte";
   import PageContainer from "../../components/PageContainer.svelte";
-  import {Link} from "svelte-routing";
-  import {router} from "../../routing";
+
+  const goBack = () => window.history.back();
+
 </script>
 
 <PageContainer>
     <PageHeader>
-        <Link to="{router.home.path}"><IconBack/></Link>
+        <div on:click={goBack}><IconBack/></div>
         <CloseIcon/>
     </PageHeader>
     <div class="body">

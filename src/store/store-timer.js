@@ -2,6 +2,8 @@ import {writable} from "svelte/store";
 import {defaultTimerTimeInMinutes, maxMinutes, minMinutes} from "../constant";
 
 function createTimer(minutes) {
+  let timerId;
+
   const getTimeData = (minutes) => {
     return {
       totalSeconds: minutes * 60,
@@ -12,17 +14,6 @@ function createTimer(minutes) {
         this.totalSeconds = minutes * 60;
         this.native.minutes = minutes;
       },
-
-      pause: function() {
-        clearInterval(timerId);
-      },
-      start: function() {
-        timerId = startTimer()
-      },
-      restart: function() {
-        this.totalSeconds = this.native.minutes * 60;
-      },
-
       toString: function() {
         const minutes = parseInt(this.totalSeconds / 60, 10);
         const seconds = parseInt(this.totalSeconds % 60, 10);
@@ -36,23 +27,40 @@ function createTimer(minutes) {
     }
   }
 
-  function startTimer() {
-    return setInterval(() => {
+  const {subscribe, update} = writable(getTimeData(minutes));
+
+  function increment() {
+    update(timer => {
+      const minutes = timer.native.minutes + 1;
+      timer.minutes = minutes > maxMinutes ? maxMinutes : minutes;
+      return timer;
+    });
+  }
+
+  function decrement() {
+    update(timer => {
+      const minutes = timer.native.minutes - 1;
+      timer.minutes = minutes < minMinutes ? minMinutes : minutes;
+      return timer;
+    });
+  }
+
+  function play() {
+    timerId = setInterval(() => {
       update(timer => {
-        if (timer.totalSeconds === 0) {
-          timer.pause();
-        } else {
-          timer.totalSeconds = timer.totalSeconds - 1;
-        }
+        const isTimerEnd = () => timer.totalSeconds === 0;
+        isTimerEnd() ? stop() : timer.totalSeconds--;
         return timer;
       })
     }, 1000);
   }
 
-  let timerId = startTimer();
-
-
-  const {subscribe, update} = writable(getTimeData(minutes));
+  function reset() {
+    update(timer => {
+      timer.totalSeconds = timer.native.minutes * 60;
+      return timer;
+    })
+  }
 
   return {
     subscribe,
@@ -66,16 +74,11 @@ function createTimer(minutes) {
       }
       return timer;
     }),
-    increment: () => update(timer => {
-      const minutes = timer.native.minutes + 1;
-      timer.minutes = minutes > maxMinutes ? maxMinutes : minutes;
-      return timer;
-    }),
-    decrement: () => update(timer => {
-      const minutes = timer.native.minutes - 1;
-      timer.minutes = minutes < minMinutes ? minMinutes : minutes;
-      return timer;
-    }),
+    play,
+    stop: () => clearInterval(timerId),
+    reset,
+    increment,
+    decrement,
   }
 }
 
