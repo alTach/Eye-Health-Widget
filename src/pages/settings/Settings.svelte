@@ -8,9 +8,17 @@
   import BodyLanguages from "./body/body-languages/BodyLanguages.svelte";
   import BodyTimer from "./body/BodyTimer.svelte";
   import PageContainer from "../../components/PageContainer.svelte";
-  import {router} from "../../store/route";
+  import {pages, router} from "../../store/route";
 
-  const goBack = () => router.back();
+  let isTimerChange = false;
+
+  const goBack = () => {
+    if (isTimerChange) {
+      router.navigate(pages.home)
+    } else {
+      router.back();
+    }
+  }
 
 </script>
 
@@ -23,7 +31,7 @@
         <BodyHead/>
         <BodyCheckboxes/>
         <BodyLanguages/>
-        <BodyTimer/>
+        <BodyTimer on:changes={() => isTimerChange = true}/>
         <ColorPicker/>
     </div>
 </PageContainer>

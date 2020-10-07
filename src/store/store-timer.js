@@ -79,6 +79,12 @@ function createTimer(minutes) {
     reset,
     increment,
     decrement,
+    update: (minutes) => {
+      update(timer => {
+        timer.native.minutes = minutes;
+        return timer;
+      })
+    }
   }
 }
 

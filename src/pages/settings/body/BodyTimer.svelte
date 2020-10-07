@@ -1,11 +1,15 @@
 <script>
   import {local} from "../../../store/localozation";
-  import TimerContorl from "../TimerContorl.svelte";
+  import TimerControl from "../TimerControl.svelte";
+  import {createEventDispatcher} from "svelte";
+  const dispatcher = createEventDispatcher();
 </script>
 
 
 <div class="body__timer">
-    {$local.page.settings.body.timerTitle} <TimerContorl/> {$local.page.settings.body.minutesMin}
+    {$local.page.settings.body.timerTitle}
+    <TimerControl on:changes={() => dispatcher('changes')}/>
+    {$local.page.settings.body.minutesMin}
 </div>
 
 

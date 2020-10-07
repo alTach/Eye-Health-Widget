@@ -1,17 +1,36 @@
 <script>
-    import {timer} from "../../store/store-timer";
-    import {minMinutes, maxMinutes} from "../../constant";
+  import {timer} from "../../store/store-timer";
+  import {minMinutes, maxMinutes} from "../../constant";
+  import {createEventDispatcher} from "svelte";
+
+  const dispatcher = createEventDispatcher();
+  const onChangeEmmit = () => dispatcher('changes');
+
+  const increment = () => {
+    timer.increment();
+    onChangeEmmit();
+  }
+
+  const decrement = () => {
+    timer.decrement();
+    onChangeEmmit();
+  }
 </script>
 
 <div class="timer">
     <button disabled="{$timer.native.minutes === minMinutes}"
             class="timer__decrement timer__action"
-            on:click={timer.decrement}>
+            on:click={decrement}>
     </button>
-    <input class="timer__time" type="number" min="0" max="999" bind:value={$timer.native.minutes}>
+    <input class="timer__time"
+           type="number"
+           min="{minMinutes}"
+           max="{maxMinutes}"
+           bind:value={$timer.native.minutes}
+           on:input={onChangeEmmit}>
     <button disabled="{$timer.native.minutes === maxMinutes}"
             class="timer__increment timer__action"
-            on:click={timer.increment}>
+            on:click={increment}>
     </button>
 </div>
 
@@ -51,6 +70,7 @@
         background-position: center;
         background-size: 65%;
         background-repeat: no-repeat;
+
         &[disabled] {
             opacity: .3;
             cursor: default;
