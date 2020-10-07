@@ -4,15 +4,15 @@
   import IconSettings from "../../components/IconSettings.svelte";
   import Scenes from "./Scenes.svelte";
   import PageContainer from "../../components/PageContainer.svelte";
-  import {router} from "../../routing";
-  import {Link} from "svelte-routing";
+  import {pages, router} from "../../store/route";
+  const goSetting = () => router.navigate(pages.settings);
 
 
 </script>
 
 <PageContainer>
     <PageHeader>
-        <Link to="{router.settings.path}"><IconSettings/></Link>
+        <IconSettings on:click={goSetting}/>
         <CloseIcon/>
     </PageHeader>
 

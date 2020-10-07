@@ -2,21 +2,18 @@
   import Settings from "./pages/settings/Settings.svelte";
   import Home from "./pages/home/Home.svelte";
   import Scene from "./pages/scene/Scene.svelte";
-  import {Router, Link, Route} from "svelte-routing";
-  import {router} from "./routing";
-
-  export let url = "";
+  import {router} from "./store/route";
+  import {pages} from "./store/route";
 </script>
 
 <main>
-    <Router url="{url}">
-        <Route path="{router.home.path}" component="{Home}"/>
-        <Route path="{router.settings.path}" component="{Settings}"/>
-        <Route path="{router.scene.path}" component="{Scene}"/>
-        <!--<Route path="/">-->
-        <!--    <Home/>-->
-        <!--</Route>-->
-    </Router>
+    {#if $router.path === pages.scene}
+        <Scene/>
+    {:else if $router.path === pages.settings}
+        <Settings/>
+    {:else}
+        <Home/>
+    {/if}
 </main>
 
 <style>

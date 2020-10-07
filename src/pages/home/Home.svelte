@@ -5,14 +5,14 @@
   import CloseIcon from "../../components/CloseIcon.svelte";
   import PageContainer from "../../components/PageContainer.svelte";
   import {timer} from "../../store/store-timer";
-  import { navigate } from "svelte-routing";
-  import {Link} from "svelte-routing";
-  import {router} from "../../routing";
   import {onDestroy} from "svelte";
   import {get} from "svelte/store";
+  import {pages, router} from "../../store/route";
 
   const isTimerEnd = ({totalSeconds}) => totalSeconds === 0;
   const isTimerReset = () => get(timer).totalSeconds === get(timer).native.minutes * 60;
+  const goSettingPage = () => router.navigate(pages.settings);
+  const goToScenePage = () => router.navigate(pages.scene);
 
   if (isTimerReset()) {
     timer.play();
@@ -20,18 +20,19 @@
 
   const timerSubscription = timer.subscribe(time => {
     if (isTimerEnd(time)) {
-      navigate(router.scene.path)
+      goToScenePage();
       timer.reset();
       timer.stop();
     }
   })
+
 
   onDestroy(timerSubscription);
 </script>
 
 <PageContainer>
     <PageHeader>
-        <Link to="{router.settings.path}"><IconSettings/></Link>
+        <IconSettings on:click={goSettingPage}/>
         <CloseIcon />
     </PageHeader>
 

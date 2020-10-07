@@ -2,15 +2,16 @@
   import Face from "./Face.svelte";
   import {sceneStore} from "../../store/store-scene";
   import {get} from "svelte/store";
-  import {navigate} from "svelte-routing";
-  import {router} from "../../routing";
+  import {pages, router} from "../../store/route";
+
+  const goHome = () => router.navigate(pages.home);
 
   const nextScene = () => {
     const storeData = get(sceneStore);
     const isSceneEnd = storeData.position === (storeData.list.length - 1);
     if (isSceneEnd) {
       sceneStore.reset(false);
-      navigate(router.home.path);
+      goHome()
     } else {
       sceneStore.next();
     }

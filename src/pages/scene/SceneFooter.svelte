@@ -1,15 +1,14 @@
 <script>
   import {sceneStore} from "../../store/store-scene";
   import {local} from "../../store/localozation";
-  import {navigate} from "svelte-routing";
-  import {router} from "../../routing";
+  import {pages, router} from "../../store/route";
 
   const goToScene = (index) => {
     sceneStore.next(index);
   }
 
   const goHome = () => {
-    navigate(router.home.path)
+    router.navigate(pages.home)
     sceneStore.reset(false);
   }
 </script>
@@ -40,7 +39,6 @@
         width: 250px;
         justify-content: space-around;
     }
-
 
     .footer__step {
         width: 20px;

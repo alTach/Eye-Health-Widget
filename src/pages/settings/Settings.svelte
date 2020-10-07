@@ -8,14 +8,15 @@
   import BodyLanguages from "./body/body-languages/BodyLanguages.svelte";
   import BodyTimer from "./body/BodyTimer.svelte";
   import PageContainer from "../../components/PageContainer.svelte";
+  import {router} from "../../store/route";
 
-  const goBack = () => window.history.back();
+  const goBack = () => router.back();
 
 </script>
 
 <PageContainer>
     <PageHeader>
-        <div on:click={goBack}><IconBack/></div>
+        <IconBack on:click={goBack}/>
         <CloseIcon/>
     </PageHeader>
     <div class="body">
