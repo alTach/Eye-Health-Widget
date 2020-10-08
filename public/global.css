@@ -132,7 +132,7 @@ button:focus {
 	--black: rgb(var(--rgb-black));
 
 	--primary: var(--blue);
-	--rgb-primary: rgb(var(--blue));
+	--rgb-primary: var(--rgb-blue);
 }
 
 [data-primary='color_blue'] {
