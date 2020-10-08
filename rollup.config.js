@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser'
-import json from 'rollup-plugin-json';
+import json from '@rollup/plugin-json';
 
 // SCSS
 import sveltePreprocess from 'svelte-preprocess';
