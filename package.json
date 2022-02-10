@@ -11,7 +11,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "autoprefixer": "^9.8.6",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss": "^7.0.35",
     "rollup": "^2.29.0",
     "rollup-plugin-livereload": "^1.0.0",
